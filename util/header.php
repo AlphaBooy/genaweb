@@ -12,6 +12,10 @@
     <script rel="script" type="text/javascript" src="../public/bootstrap/js/bootstrap.min.js"></script>
     <!-- Import de startup-kit UI, une surcouche CSS basée sur bootstrap -->
     <link rel="stylesheet" type="text/css" href="../public/startupkit/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../public/startupkit/css/font-awesome.min.css"/>
     <script rel="script" type="text/javascript" src="../public/startupkit/js/maps.js"></script>
+    <script rel="script" type="text/javascript" src="../public/startupkit/js/jquery-3.1.1.min.js"></script>
+    <!-- Imports nucléo icons -->
+    <link rel="stylesheet" type="text/css" href="../public/medias/icons/nucleo-test-pack/iconfont/nc-demo_outline/css/style.css"/>
 </head>
 <body>
