@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Ignore les fichiers PHPStorm
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
