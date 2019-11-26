@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+if (isset($_GET['message'])) {
+    switch ($_GET['message']) {
+        case "connexionOk":
+            require_once "../view/messages/connexionOk.php";
+            break;
+        case "deconnexionOk":
+            require_once "../view/messages/deconnexionOk.php";
+    }
+}
 
 //Partie "head" du document HTML
 require_once "../util/header.php";
