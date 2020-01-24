@@ -5,7 +5,7 @@ function CompteExiste($mail, $pdo) {
     $rqt = $pdo->prepare($sql);
     $rqt->execute([$mail]);
     $result = $rqt->fetch(PDO::FETCH_ASSOC);
-    if(isset($result['mail'])) {
+    if (isset($result['mail'])) {
         return true;
     }
     return false;
