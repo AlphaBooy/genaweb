@@ -16,3 +16,49 @@
     margin-left: 0;
     margin-right: 0;
 }
+
+#logo{
+    width: 35px;
+}
+
+.fiches_tab_header{
+    font-size: 1.2em;
+}
+
+#fichesView tr{
+    border-bottom: #359487 solid 3px;
+}
+
+.nav-link:hover{
+    color: #494D4F;
+    font-weight:bold;
+}
+
+.nav-link{
+    color: #292b2c;
+    font-weight:bold;
+}
+
+#myNavbar{
+    background: rgb(41,43,44);
+    background: linear-gradient(90deg, rgba(41,43,44,1) 79%, rgba(65,179,163,1) 100%);
+}
+
+.navbar_dropdown{
+    background: #359487;
+    border: 2px solid #359487;
+}
+
+.navbar_dropdown a{
+    color: #292b2c;
+}
+
+.navbar_dropdown a:hover{
+    background: #292b2c;
+    color: #359487;
+}
+
+#dropdownMenuButton:hover{
+    background: transparent;
+
+}

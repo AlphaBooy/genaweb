@@ -2,16 +2,16 @@
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="../index.php" alt="Retourner à l'accueil">GenaWEB</a>
+    <a class="navbar-brand" href="../index.php" alt="Retourner à l'accueil"><img id="logo" src="../public/medias/images/Google_Earth_icon.svg"> GenaWEB</a>
     <ul class="nav ml-auto">
         <?php
         if (isset($_SESSION['id'])) { ?>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"><span class="fa fa-search" </a>
-                <div class="dropdown-menu center" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Voir tous mes arbres</a>
-                    <a class="dropdown-item" href="#">Voir toutes mes fiches</a>
+                <div class="dropdown-menu navbar_dropdown" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="arbres.php">Voir tous mes arbres</a>
+                    <a class="dropdown-item" href="fiches.php">Voir toutes mes fiches</a>
                 </div>
             </li>
             <li class="nav-item align-content-right">

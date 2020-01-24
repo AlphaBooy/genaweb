@@ -1,7 +1,7 @@
 <div class="container">
     <table id="fichesView" class="display mt-5 w-100">
         <thead class="bg-primary">
-        <tr class="text-center">
+        <tr class="text-center fiches_tab_header">
             <th>ID</th>
             <th>IDPersonne</th>
             <th>Créée par</th>
