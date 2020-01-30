@@ -1,3 +1,10 @@
+mark {
+    background-color: #292b2c;
+    color: #3b9488;
+}
+
+
+
 .center {
     text-align: center;
     margin-left: auto;
@@ -61,4 +68,63 @@
 #dropdownMenuButton:hover{
     background: transparent;
 
+}
+
+/* Accueil */
+
+.marg_top{
+    margin-top: 5vh;
+}
+
+#divAccueil1_1_img{
+    width: 40vw;
+}
+
+.body{
+    background-color: #292b2c;
+    border-top: #3b9488 2px solid;
+}
+
+#divAccueil1_2 p {
+    border-left: #3b9488 solid 1vw;
+    padding-left: 10vh;
+    margin-top: 5vh;
+    margin-left: -10vh;
+    font-size: 2em;
+    color: #3b9488;
+    font-weight: bold;
+}
+
+#divAccueil2_2 p {
+    border-right: #292b2c solid 1vw;
+    padding-right: 10vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    font-size: 2em;
+    color: #292b2c;
+    font-weight: bold;
+}
+
+.row2{
+    background-image: url("../../medias/images/backgroun_logo.svg");
+    background-size: 2000px;
+}
+
+#divAccueil2_1_img{
+    width: 40vw;
+    margin-top: 7vh;
+}
+
+#divAccueil3_2 p {
+    border-left: #3b9488 solid 1vw;
+    padding-left: 10vh;
+    margin-top: 10vh;
+    margin-left: -10vh;
+    font-size: 2em;
+    color: #3b9488;
+    font-weight: bold;
+}
+
+#divAccueil3_1_img{
+    width: 40vw;
 }
