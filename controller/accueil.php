@@ -8,6 +8,9 @@ if (isset($_GET['message'])) {
             break;
         case "deconnexionOk":
             require_once "../view/messages/deconnexionOk.php";
+            break;
+        case "aucunArbre":
+            require_once "../view/messages/aucunArbre.php";
     }
 }
 
