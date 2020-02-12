@@ -8,7 +8,7 @@ require_once "../util/dateUtil.php";
 require_once "../model/arbresModel.php";
 require_once "../model/userModel.php";
 
-$arbre = getArbreByID($_GET["id"], getPDO());
+$arbre = getArbreByID(1, getPDO());
 
 //Partie "head" du document HTML
 require_once "../util/header.php";

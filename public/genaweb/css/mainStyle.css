@@ -3,6 +3,9 @@ mark {
     color: #3b9488;
 }
 
+body{
+    background: #292b2c;
+}
 
 
 .center {
@@ -24,17 +27,13 @@ mark {
     margin-right: 0;
 }
 
+/* NavBar  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
 #logo{
     width: 35px;
 }
 
-.fiches_tab_header{
-    font-size: 1.2em;
-}
-
-#fichesView tr{
-    border-bottom: #359487 solid 3px;
-}
 
 .nav-link:hover{
     color: #494D4F;
@@ -49,6 +48,7 @@ mark {
 #myNavbar{
     background: rgb(41,43,44);
     background: linear-gradient(90deg, rgba(41,43,44,1) 79%, rgba(65,179,163,1) 100%);
+    border-bottom: #3b9488 2px solid;
 }
 
 .navbar_dropdown{
@@ -70,7 +70,7 @@ mark {
 
 }
 
-/* Accueil */
+/* Accueil  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 .marg_top{
     margin-top: 5vh;
@@ -78,11 +78,6 @@ mark {
 
 #divAccueil1_1_img{
     width: 40vw;
-}
-
-.body{
-    background-color: #292b2c;
-    border-top: #3b9488 2px solid;
 }
 
 #divAccueil1_2 p {
@@ -107,7 +102,7 @@ mark {
 
 .row2{
     background-image: url("../../medias/images/backgroun_logo.svg");
-    background-size: 2000px;
+    background-size: 100vw;
 }
 
 #divAccueil2_1_img{
@@ -138,4 +133,38 @@ mark {
 .row4{
     background-image: url("../../medias/images/waves.svg");
     background-size: 100vw;
+}
+
+/* Fiches  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+
+#fichesView{
+    border: #359487 solid 0.5vh;
+}
+
+#fichesView tr{
+    border-bottom: #359487 solid 3px;
+    background: white;
+}
+
+#fichesView thead tr{
+    border-bottom: #359487 solid 3px;
+    background: #3b9488;
+}
+
+/* Fiches  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+#fichesView{
+    border: #359487 solid 0.5vh;
+}
+
+#fichesView tr{
+    border-bottom: #359487 solid 3px;
+    background: white;
+}
+
+#fichesView thead tr{
+    border-bottom: #359487 solid 3px;
+    background: #3b9488;
 }
