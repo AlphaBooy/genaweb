@@ -2,7 +2,10 @@
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="../index.php" alt="Retourner à l'accueil"><img id="logo" src="../public/medias/images/Google_Earth_icon.svg"> GenaWEB</a>
+    <a class="navbar-brand" href="../index.php">
+        <img id="logo"  alt="logo de GenaWeb" src="../public/medias/images/Google_Earth_icon.svg">
+        GenaWEB
+    </a>
     <ul class="nav ml-auto">
         <?php
         if (isset($_SESSION['id'])) { ?>

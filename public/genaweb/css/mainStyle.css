@@ -128,3 +128,14 @@ mark {
 #divAccueil3_1_img{
     width: 40vw;
 }
+
+#divAccueil4_1_img{
+    width: 15vw;
+    margin-bottom: 7vh;
+    margin-top: 7vh;
+}
+
+.row4{
+    background-image: url("../../medias/images/waves.svg");
+    background-size: 100vw;
+}

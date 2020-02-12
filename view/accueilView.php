@@ -3,7 +3,7 @@
 
     <div class="row marg_top">
         <div class="col-6" id="divAccueil1_1">
-            <img id="divAccueil1_1_img" src="../public/medias/images/homme-asi-stock.jpg">
+            <img id="divAccueil1_1_img" alt="Homme asiatique utilisant son ordinateur" src="../public/medias/images/homme-asi-stock.jpg">
         </div >
         <div class="col-1">
 
@@ -30,14 +30,14 @@
 
         </div>
         <div class="col-6" id="divAccueil2_1">
-            <img id="divAccueil2_1_img" src="../public/medias/images/femme_stock.jpg">
+            <img id="divAccueil2_1_img" alt="Femme caucasienne utilisant son ordinateur" src="../public/medias/images/femme_stock.jpg">
         </div>
     </div>
 
 
     <div class="row marg_top">
         <div class="col-6" id="divAccueil3_1">
-            <img id="divAccueil3_1_img" src="../public/medias/images/homme_afr_stock.jpg">
+            <img id="divAccueil3_1_img" alt="Homme africain utilisant son ordinateur" src="../public/medias/images/homme_afr_stock.jpg">
         </div >
         <div class="col-1">
 
@@ -49,15 +49,9 @@
         </div>
     </div>
 
-    <div class="row marg_top">
-        <div class="col-5">
+    <div class="row marg_top row4">
+        <div class="col-12 text-center">
+            <img id="divAccueil4_1_img" alt="dessin d'arbre" src="../public/medias/images/treeWithFeuilles.svg">
         </div>
-        <div class="col-2">
-            <img id="divAccueil4_1_img" src="../public/medias/images/homme_afr_stock.jpg">
-        </div>
-        <div class="col-5">
-
-        </div>
-
     </div>
 </div>
