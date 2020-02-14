@@ -7,6 +7,58 @@ body{
     background: #292b2c;
 }
 
+table {
+    border: #359487 solid 0.5vh;
+}
+
+table tr{
+    border-bottom: #359487 solid 3px;
+    background: white;
+}
+
+table thead tr {
+    border-bottom: #359487 solid 3px;
+    background: #3b9488;
+}
+
+table td {
+    height: 40px;
+    border-left: 0.5vh solid #3b9488;
+    border-right: 0.5vh solid #3b9488;;
+}
+
+table td:first-child {
+    border-left: none;
+}
+
+table td:last-child {
+    border-right: none;
+}
+
+.mark1{
+    background-color: #3b9488;
+    color: #292b2c;
+}
+
+.mark2{
+    background-color: #292b2c;
+    color:#3b9488 ;
+}
+
+
+.button_green{
+    margin-top: 0.5vh;
+    background-color: #3b9488;
+}
+
+.button_green:hover{
+    background-color: #357069;
+}
+
+button:focus, button:active{
+    outline: none !important;
+    box-shadow: none !important;
+}
 
 .center {
     text-align: center;
@@ -140,31 +192,26 @@ body{
 
 
 #fichesView{
-    border: #359487 solid 0.5vh;
+
 }
 
 #fichesView tr{
-    border-bottom: #359487 solid 3px;
-    background: white;
 }
 
 #fichesView thead tr{
-    border-bottom: #359487 solid 3px;
-    background: #3b9488;
+
 }
 
-/* Fiches  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/* Arbre  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-#fichesView{
-    border: #359487 solid 0.5vh;
+.dropdown_table td:first-child {
+    background: #3b9488
 }
 
-#fichesView tr{
-    border-bottom: #359487 solid 3px;
-    background: white;
+.dropdown_table td {
+    border:#359487 solid 3px;;
 }
 
-#fichesView thead tr{
-    border-bottom: #359487 solid 3px;
-    background: #3b9488;
+.dropdown_table td:last-child {
+    border-right:#359487 solid 3px;
 }
