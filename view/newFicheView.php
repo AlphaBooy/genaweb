@@ -128,6 +128,6 @@
         <div class="row mt-5">
             <p class="text-danger">(*) Données obligatoires</p>
         </div>
-        <input type="sumbit" class="form-control w-100" title="Créer la fiche"/>
+        <button type="submit" class="btn btn-block btn-primary">Créer la fiche</button>
     </div>
 </form>
