@@ -1,24 +1,30 @@
-<div class="btn-group dropright">
-    <button type="button" class="btn button_green dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Info
-    </button>
-    <div class="dropdown-menu bg-transparent border-0">
-        <table class="dropdown_table">
-            <tr>
-                <td>Administrateur</td>
-                <td><?=getUserByID($arbre["ID"], getPDO())["mail"];?></td>
-            </tr>
-            <tr>
-                <td>Créateur de l'arbre</td>
-                <td><?=getUserByID($arbre["userCrea"], getPDO())['mail'];?></td>
-                <td><?=dateFromDBtoDisplay($arbre["dateCrea"]);?></td>
-            </tr>
-            <tr>
-                <td>Dernière modification</td>
-                <td><?=getUserByID($arbre["userDerniereModif"], getPDO())['mail'];?></td>
-                <td><?=dateFromDBtoDisplay($arbre["dateDerniereModif"]);?></td>
-            </tr>
-        </table>
-    </div>
+<div id="SVGContainer">
+    <?php
+    // On récupère toutes les données de toutes les fiches de l'arbre
+    $datas = getAllDatas(1);
+    foreach ($datas as $data) {
+        echo '<svg width="500" height="350" preserveAspectRatio="xMaxYMax meet">';
+            // Ajout de l'image représentant le sexe de la personne
+            // On analyse la lettre stockée en BD représentant le sexe de l'individu (h ou f)
+            if ($data["sexe"] === 'h') {  // Si le sexe stocké est 'h' => c'est un homme
+                // On défini la ViewBox de l'image en fonction du sexe (pour afficher le sprite)
+                $vb = "50 0 100 50";
+                // On charge l'image du visage au format PNG (pour gérer la transparence)
+                echo '<image width="400" height="300" x="50" y="20" xlink:href="../public/medias/images/defaultImageHomme.png"/>';
+                // On affiche la ViewBox au format défini précedement puis on charge l'image réprésentant le sexe de l'individu sur le sprite
+                echo '<svg viewBox="' . $vb . '" width="100px" height="50px" x="225" y="215"><image xlink:href="../public/medias/images/genders.png" width="100px" height="50px"/></svg>';
+            } else {  // Sinon c'est une femme :
+                // On défini les dimensions du sprite
+                $vb = "0 0 50 50";
+                // On charge la photo par défaut pour les femmes (au format PNG)
+                echo '<image width="400" height="300" x="50" y="20" xlink:href="../public/medias/images/defaultImageFemme.png"/>';
+                // On charge l'image représentant le sexe de l'individu aux dimensions du sprite données
+                echo '<svg viewBox="' . $vb . '" width="50px" height="50px" x="225" y="215"><image xlink:href="../public/medias/images/genders.png" width="100px" height="50px"/></svg>';
+            }
+            // On intègre le cadre (cercle stylisé) des photos
+            echo '<image width="500" height="350" xlink:href="../public/medias/images/baseArbre.png" />';
+            // On ajoute le nom et prénom au format P. Nom (tronqué à 14 charactères pour éviter les problèmes de rendu)
+            echo '<text x="50%" y="297" font-size="20" text-anchor="middle" alignment-baseline="central">' . substr($data["prenom"],0, 1) . ". " . substr($data["nom"],0, 14) . '</text>';
+        echo '</svg>';
+    }?>
 </div>
-

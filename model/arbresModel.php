@@ -20,8 +20,8 @@ function getAllArbresByUser($idUser, $pdo = null) {
  * Récupère les information d'un arbre sous forme de tableau
  *
  * @param $id       - Identifiant de l'arbre dont on veut récupérer les informations
- * @param null $pdo -
- * @return array    -
+ * @param PDO $pdo - Objet de connexion à la base de données
+ * @return array    - Toutes les informations relatives à un arbre rangées dans un tableay ordonné
  */
 function getArbreByID($id, $pdo = null) {
     $pdo = isset($pdo) ? $pdo : getPDO();
@@ -34,15 +34,43 @@ function getArbreByID($id, $pdo = null) {
 
 
 /**
- * @param $arbre
+ * @param $idarbre
  * @param null $pdo
  * @return mixed
  */
-function getMaxSosa($arbre, $pdo = null) {
+function getMaxSosa($idarbre, $pdo = null) {
     $pdo = isset($pdo) ? $pdo : getPDO();
-    $sql = "SELECT MAX('IDSOSA') FROM SOSA WHERE IDARBRE = :IDARBRE";
+    $sql = "SELECT MAX(IDSOSA) FROM SOSA WHERE IDARBRE = :IDARBRE";
     $rqt = $pdo->prepare($sql);
-    $rqt->execute([$arbre]);
+    $rqt->execute([$idarbre]);
     $result = $rqt->fetch();
+    return $result;
+}
+
+/**
+ * Récupère toutes les personnes positionnées sur une branche de l'arbre
+ * @param $arbre
+ * @param null $pdo
+ * @return array
+ */
+function getAllPersonnesFromArbre($idarbre, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $sql = "SELECT * FROM SOSA WHERE IDARBRE = :IDARBRE";
+    $rqt = $pdo->prepare($sql);
+    $rqt->execute([$idarbre]);
+    $result = $rqt->fetchAll();
+    return $result;
+}
+
+function getAllDatas($idarbre, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $tab = getAllPersonnesFromArbre($idarbre);
+    $result =[];
+    foreach ($tab as $personne) {
+        $sql = "SELECT * FROM PERSONNE WHERE ID = :IDPERSONNE";
+        $rqt = $pdo->prepare($sql);
+        $rqt->execute([$personne['IDPERSONNE']]);
+        array_push($result, $rqt->fetch());
+    }
     return $result;
 }

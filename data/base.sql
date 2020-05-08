@@ -1,12 +1,12 @@
 -- Création des tables de la base de données (mettre à jour à chaque update et delete en prod) --
 
 CREATE TABLE `genaweb`.`PERSONNE` (
-    `ID` BIGINT(21) NOT NULL,
+    `ID` BIGINT(21) NOT NULL AUTO_INCREMENT,
     `prenom` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
     `nom` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
     `nomnaiss` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
-    `prenom2` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
-    `prenom3` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
+    `prenom2` VARCHAR(25) CHARACTER SET utf8,
+    `prenom3` VARCHAR(25) CHARACTER SET utf8,
     `sexe` ENUM('h','f') CHARACTER SET utf8 NOT NULL,
     `datenaiss` DATE NOT NULL,
     `lieunaiss` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
@@ -16,29 +16,29 @@ CREATE TABLE `genaweb`.`PERSONNE` (
 ) ENGINE = InnoDB;
 
 CREATE TABLE `genaweb`.`USER` (
-    `ID` BIGINT(21) NOT NULL,
+    `ID` BIGINT(21) NOT NULL AUTO_INCREMENT,
     `mail` VARCHAR(50) CHARACTER SET utf8 NOT NULL,
     `mdp` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
-    `sexe` ENUM('SUPER-ADMIN','ADMIN') NOT NULL,
+    `grade` ENUM('SUPER-ADMIN','ADMIN') NOT NULL,
     PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `genaweb`.`FICHE` (
-    `ID` BIGINT(21) NOT NULL,
+    `ID` BIGINT(21) NOT NULL AUTO_INCREMENT,
     `idPersonne` BIGINT(21) NOT NULL,
-    `dateCrea` DATE NOT NULL,
+    `dateCrea` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `userCrea` BIGINT(21) NOT NULL,
-    `dateDerniereModif` DATE NOT NULL,
+    `dateDerniereModif` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `userDerniereModif` BIGINT(21) NOT NULL,
     PRIMARY KEY (`ID`), FOREIGN KEY(`idPersonne`) REFERENCES personne(`ID`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE `genaweb`.`ARBRE` (
-    `ID` INT(11) NOT NULL,
+    `ID` INT(11) NOT NULL AUTO_INCREMENT,
     `admin` BIGINT(21) NOT NULL,
-    `dateCrea` DATE NOT NULL,
+    `dateCrea` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `userCrea` BIGINT(21) NOT NULL,
-    `dateDerniereModif` DATE NOT NULL,
+    `dateDerniereModif` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `userDerniereModif` BIGINT(21) NOT NULL,
     PRIMARY KEY (`ID`), FOREIGN KEY(`admin`) REFERENCES user(`ID`)
 ) ENGINE = InnoDB;
@@ -51,7 +51,7 @@ CREATE TABLE `genaweb`.`SOSA` (
 ) ENGINE = InnoDB;
 
 CREATE TABLE `genaweb`.`DOCUMENT` (
-    `ID` BIGINT(21) NOT NULL,
+    `ID` BIGINT(21) NOT NULL AUTO_INCREMENT,
     `IdFiche` BIGINT(21) NOT NULL,
     `nom` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
     `nature` VARCHAR(25) CHARACTER SET utf8 NOT NULL,

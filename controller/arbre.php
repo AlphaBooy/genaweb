@@ -8,7 +8,13 @@ require_once "../util/dateUtil.php";
 require_once "../model/arbresModel.php";
 require_once "../model/userModel.php";
 
-$arbre = getArbreByID(1, getPDO());
+if (!isset($_GET["id"]) | getArbreByID($_GET["id"]) === null | getArbreByID($_GET["id"]) === false) {
+    header("Location: accueil.php?message=aucunArbre");
+} else {
+    $arbre = getArbreByID($_GET["id"]);
+}
+
+$data = getAllDatas(1);
 
 //Partie "head" du document HTML
 require_once "../util/header.php";
@@ -23,3 +29,4 @@ require_once "../util/footbar.php";
 
 //Partie "foot" du document HTML
 require_once "../util/footer.php";
+?>

@@ -128,5 +128,6 @@
         <div class="row mt-5">
             <p class="text-danger">(*) Données obligatoires</p>
         </div>
+        <input type="sumbit" class="form-control w-100" title="Créer la fiche"/>
     </div>
 </form>
