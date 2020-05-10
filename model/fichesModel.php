@@ -28,8 +28,7 @@ function getAllFichesByUser($idUser, $pdo) {
  */
 
 function insertNewFiche($idPersonne, $idCreateur, $pdo) {
-    $sql = "INSERT INTO fiche ('ID','idPersonne','dateCrea','userCrea','dateDerniereModif','userDerniereModif')
-                        VALUES(:ID, :idPersonne, :dateCrea, :userCrea, :dateDerniereModif, :userDerniereModif)";
+    $sql = "INSERT INTO fiche VALUES(:ID, :idPersonne, :dateCrea, :userCrea, :dateDerniereModif, :userDerniereModif)";
     $rqt = $pdo->prepare($sql);
     $rqt->execute([NULL,$idPersonne,NULL,$idCreateur,NULL,$idCreateur]);
     return $rqt->fetch();
@@ -60,13 +59,14 @@ function insertNewFiche($idPersonne, $idCreateur, $pdo) {
 
 function insertNewPersonne($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $professions,
     $ligne, $cp, $ville, $datenaiss, $lieunaiss, $datedeces, $lieudeces, $pdo) {
-    //TODO gérer les professions
-    $sql = "INSERT INTO personne ('ID','prenom','nom','nomnaiss','prenom2','prenom3','sexe','datenaiss','lieunaiss','datedeces','lieudeces') 
-                          VALUES (:ID, :prenom, :nom, :nomnaiss, :prenom2, :prenom3, :sexe, :datenaiss, :lieunaiss, :datedeces, :lieudeces)";
+    //TODO gérer les professions et adresses
+    $sql = "INSERT INTO personne VALUES (NULL," . strval($prenom1) . "," . $nom ."," . $nomnaiss ."," . $prenom2 ."," . $prenom3 ."," . $sexe ."," . $lieunaiss ."," . $datenaiss ."," . $datedeces ."," . $lieudeces . ")";
     $rqt = $pdo->prepare($sql);
-    $rqt->execute([NULL, $prenom1, $nom, $nomnaiss, $prenom2, $prenom3, $sexe, $datenaiss, $lieunaiss, $datedeces, $lieudeces]);
-    if ($rqt->fetch()) {
-        insertNewFiche($pdo->lastInsertId(), $_SESSION['id'],$pdo);
+    $pdo->exec($sql);
+    $personneCreee = $pdo->lastInsertId();
+    if ($personneCreee >= 1) {
+        insertNewFiche($personneCreee, getIDFromMail($_SESSION['mail'],getPDO()),getPDO());
+        return 1;
     } else {
         return -1;
     }

@@ -9,7 +9,7 @@
  */
 function getAllArbresByUser($idUser, $pdo = null) {
     $pdo = isset($pdo) ? $pdo : getPDO();
-    $sql = "SELECT * FROM arbresAutorisations WHERE idUser = :idUser";
+    $sql = "SELECT * FROM arbresAutorisations WHERE admin = :idUser";
     $rqt = $pdo->prepare($sql);
     $rqt->execute([$idUser]);
     $result = $rqt->fetchAll(PDO::FETCH_ASSOC);
