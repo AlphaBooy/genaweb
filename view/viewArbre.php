@@ -1,7 +1,5 @@
 <div id="SVGContainer">
     <?php
-    // On récupère toutes les données de toutes les fiches de l'arbre
-    $datas = getAllDatas($_GET["id"]);
     foreach ($datas as $data) {
         echo '<svg width="500" height="350" preserveAspectRatio="xMaxYMax meet">';
             // Ajout de l'image représentant le sexe de la personne
