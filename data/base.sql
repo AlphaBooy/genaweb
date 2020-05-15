@@ -10,8 +10,8 @@ CREATE TABLE `genaweb`.`PERSONNE` (
     `sexe` ENUM('h','f') CHARACTER SET utf8 NOT NULL,
     `datenaiss` DATE NOT NULL,
     `lieunaiss` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
-    `datedeces` DATE NOT NULL,
-    `lieudeces` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
+    `datedeces` DATE,
+    `lieudeces` VARCHAR(25) CHARACTER SET utf8,
     PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB;
 

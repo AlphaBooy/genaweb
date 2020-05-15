@@ -16,6 +16,19 @@ function getAllFichesByUser($idUser, $pdo) {
     return $result;
 }
 
+function newFiche($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $professions,
+                  $ligne, $cp, $ville, $datenaiss, $lieunaiss, $datedeces, $lieudeces, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $personneCree = insertNewPersonne($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $professions,
+                                        $ligne, $cp, $ville, $datenaiss, $lieunaiss, $datedeces, $lieudeces, $pdo);
+    if ($personneCree !== -1) {
+        $ficheCree = insertNewFiche($personneCree, getIDFromMail($_SESSION["mail"], $pdo), $pdo);
+        if ($ficheCree !== -1) {
+            addAutorisations(getIDFromMail($_SESSION["mail"], $pdo), $ficheCree, $pdo);
+        }
+    }
+}
+
 /**
  * Créer une fiche associée à une personne et à un créateur.
  * La date par défaut et la date courante. On se sert donc de cette propriété pour
@@ -24,14 +37,19 @@ function getAllFichesByUser($idUser, $pdo) {
  * @param $idPersonne int Identifiant unique de la personne dont on créer la fiche (clé primaire personne)
  * @param $idCreateur int Identifiant de connexion du créateur de la fiche
  * @param $pdo PDO Objet de connexion à la base de données
- * @return boolean true ssi l'insertion s'est bien passée
+ * @return int L'ID de la fiche créée aou -1 en cas d'echec
  */
 
 function insertNewFiche($idPersonne, $idCreateur, $pdo) {
     $sql = "INSERT INTO fiche VALUES(:ID, :idPersonne, :dateCrea, :userCrea, :dateDerniereModif, :userDerniereModif)";
     $rqt = $pdo->prepare($sql);
-    $rqt->execute([NULL,$idPersonne,NULL,$idCreateur,NULL,$idCreateur]);
-    return $rqt->fetch();
+    if ($rqt->execute([NULL,$idPersonne['ID'],NULL,$idCreateur['ID'],NULL,$idCreateur['ID']])) {
+        $sqlReturn = "SELECT ID FROM fiche ORDER BY ID DESC LIMIT 1";
+        $rqtReturn = $pdo->prepare($sqlReturn);
+        $rqtReturn->execute([]);
+        return $rqtReturn->fetch();
+    }
+    return -1;
 }
 
 /**
@@ -59,15 +77,21 @@ function insertNewFiche($idPersonne, $idCreateur, $pdo) {
 
 function insertNewPersonne($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $professions,
     $ligne, $cp, $ville, $datenaiss, $lieunaiss, $datedeces, $lieudeces, $pdo) {
-    //TODO gérer les professions et adresses
-    $sql = "INSERT INTO personne VALUES (NULL," . strval($prenom1) . "," . $nom ."," . $nomnaiss ."," . $prenom2 ."," . $prenom3 ."," . $sexe ."," . $lieunaiss ."," . $datenaiss ."," . $datedeces ."," . $lieudeces . ")";
+    $sql = "INSERT INTO personne VALUES (:ID, :prenom, :nom, :nomnaiss, :prenom2, :prenom3,
+                                :sexe, :datenaiss, :lieunaiss, :lieudeces, :datedeces)";
     $rqt = $pdo->prepare($sql);
-    $pdo->exec($sql);
-    $personneCreee = $pdo->lastInsertId();
-    if ($personneCreee >= 1) {
-        insertNewFiche($personneCreee, getIDFromMail($_SESSION['mail'],getPDO()),getPDO());
-        return 1;
-    } else {
-        return -1;
+    if ($rqt->execute([NULL,$prenom1, $nom, $nomnaiss, $prenom2, $prenom3, $sexe, $lieunaiss, $datenaiss, $lieudeces, $datedeces])) {
+        $sqlResult = "SELECT ID FROM personne ORDER BY ID DESC LIMIT 1";
+        $rqtResult = $pdo->prepare($sqlResult);
+        $rqtResult->execute([]);
+        return $rqtResult->fetch();
     }
+    return -1;
+}
+
+function addAutorisations($idUser, $idFiche, $pdo) {
+    $sqlautorisation = "INSERT INTO autorisations VALUES (:IDUSER, :idObjet, :typeObjet, :niveau)";
+    $rqtautorisation = $pdo->prepare($sqlautorisation);
+    $rqtautorisation->execute([$idUser['ID'],$idFiche['ID'],"fiche","super-administrateur"]);
+    return $rqtautorisation->fetch();
 }

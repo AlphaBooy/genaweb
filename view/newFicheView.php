@@ -1,4 +1,4 @@
-<form class="form-horizontal" target="newFiche.php" method="get">
+<form class="form-horizontal" method="get">
     <div class="container">
         <fieldset>
             <div class="row">

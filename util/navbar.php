@@ -17,6 +17,15 @@
                     <a class="dropdown-item" href="fiches.php">Voir toutes mes fiches</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false"><span class="fa fa-plus-circle" </a>
+                <div class="dropdown-menu navbar_dropdown" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="newFiche.php">Créer une nouvelle fiche</a>
+                    <a class="dropdown-item" href="newArbre.php">Créer un nouvel arbre généalogique</a>
+                    <a class="dropdown-item" href="autorisation.php">Gérer les autorisations</a>
+                </div>
+            </li>
             <li class="nav-item align-content-right">
                 <a href="deco.php" class="nav-link">Se déconnecter</a>
             </li>
