@@ -215,3 +215,8 @@ button:focus, button:active{
 .dropdown_table td:last-child {
     border-right:#359487 solid 3px;
 }
+
+.trclicable:hover {
+    background-color: transparent;
+    color: #359487;
+}

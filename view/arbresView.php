@@ -1,5 +1,5 @@
 <div class="container">
-    <table id="fichesView" class="display mt-5 w-100">
+    <table id="arbresView" class="display mt-5 w-100">
         <thead class="bg-primary">
         <tr class="text-center fiches_tab_header">
             <th>ID</th>
@@ -12,7 +12,7 @@
         </thead>
         <?php
         foreach ($allarbres as $arbre) {
-            echo '<tr>';
+            echo '<tr class="trclicable" onclick="window.location.assign(\'../controller/arbre.php?id=' . $arbre['ID'] . '\');">';
             echo '<td class="text-center">' . $arbre['ID'] . '</td>';
             echo '<td class="text-center">' . getUserByID($arbre['userCrea'], getPDO())["mail"] . '</td>';
             echo '<td class="text-center">' . dateFromDBtoDisplay($arbre['dateCrea']) . '</td>';
