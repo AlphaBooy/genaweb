@@ -74,3 +74,21 @@ function getAllDatas($idarbre, $pdo = null) {
     }
     return $result;
 }
+
+function createArbre($idUser, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $sql = "INSERT INTO arbre VALUES(:id,:admin,:dateCrea,:userCrea,:dateDerniereModif,:userDerniereModif)";
+    $rqt = $pdo->prepare($sql);
+     if ($rqt->execute([NULL, $idUser["ID"], NULL, $idUser["ID"], NULL, $idUser["ID"]])) {
+         $sqlResult = "SELECT ID FROM arbre ORDER BY ID DESC LIMIT 1";
+         $rqtResult = $pdo->prepare($sqlResult);
+         $rqtResult->execute([]);
+         return addAutorisations($idUser,$rqtResult->fetch(),$pdo);
+     }
+}
+
+function addAutorisations($idUser, $idArbre, $pdo) {
+    $sqlautorisation = "INSERT INTO autorisations VALUES (:IDUSER, :idObjet, :typeObjet, :niveau)";
+    $rqtautorisation = $pdo->prepare($sqlautorisation);
+    return $rqtautorisation->execute([$idUser['ID'],$idArbre['ID'],"arbre","super-administrateur"]);
+}

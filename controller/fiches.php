@@ -14,6 +14,10 @@ $allfiches = getAllFichesByUser(1, getPDO());
 //Partie "head" du document HTML
 require_once "../util/header.php";
 
+if (isset($_GET["id"])) {
+    require_once "../view/messages/ficheCreee.php";
+}
+
 //Partie "navbar" (ou barre de navigation) du document HTML
 require_once "../util/navbar.php";
 

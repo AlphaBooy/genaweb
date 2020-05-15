@@ -21,7 +21,8 @@ function getUserByID($id, $pdo) {
  * @param $pdo PDO objet de connexion à la base de données
  * @return int L'ID de base de données récupérée depuis le mail
  */
-function getIDFromMail($mail, $pdo) {
+function getIDFromMail($mail, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
     $sql = "SELECT ID FROM user WHERE mail = :mail";
     $rqt = $pdo->prepare($sql);
     $rqt->execute([$mail]);

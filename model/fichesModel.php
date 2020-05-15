@@ -25,6 +25,7 @@ function newFiche($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $profess
         $ficheCree = insertNewFiche($personneCree, getIDFromMail($_SESSION["mail"], $pdo), $pdo);
         if ($ficheCree !== -1) {
             addAutorisations(getIDFromMail($_SESSION["mail"], $pdo), $ficheCree, $pdo);
+            return $ficheCree["ID"];
         }
     }
 }
