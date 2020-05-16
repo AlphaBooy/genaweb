@@ -90,9 +90,16 @@ function insertNewPersonne($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe,
     return -1;
 }
 
+/**
+ * Permet de définir une autorisation pour une fiche donnée
+ * @OverWrite addAutorisations() -> droitsModel.php
+ * @param $idUser int identifiant de l'utilisateur
+ * @param $idFiche int identifiant de la fiche
+ * @param $pdo PDO objet de connexion à la base de données
+ * @return boolean true ssi l'ajout des droits s'est bien effectué
+ */
 function addAutorisations($idUser, $idFiche, $pdo) {
     $sqlautorisation = "INSERT INTO autorisations VALUES (:IDUSER, :idObjet, :typeObjet, :niveau)";
     $rqtautorisation = $pdo->prepare($sqlautorisation);
-    $rqtautorisation->execute([$idUser['ID'],$idFiche['ID'],"fiche","super-administrateur"]);
-    return $rqtautorisation->fetch();
+    return $rqtautorisation->execute([$idUser['ID'],$idFiche['ID'],"fiche","super-administrateur"]);
 }

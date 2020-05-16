@@ -220,3 +220,7 @@ button:focus, button:active{
     background-color: transparent;
     color: #359487;
 }
+
+.text-bold {
+    font-weight: bold;
+}

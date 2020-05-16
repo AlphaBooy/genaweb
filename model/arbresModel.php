@@ -87,6 +87,14 @@ function createArbre($idUser, $pdo = null) {
      }
 }
 
+/**
+ * Permet de définir une autorisation pour un arbre donné
+ * @OverWrite addAutorisations() -> droitsModel.php
+ * @param $idUser int identifiant de l'utilisateur
+ * @param $idFiche int identifiant de l'arbre
+ * @param $pdo PDO objet de connexion à la base de données
+ * @return boolean true ssi l'ajout des droits s'est bien effectué
+ */
 function addAutorisations($idUser, $idArbre, $pdo) {
     $sqlautorisation = "INSERT INTO autorisations VALUES (:IDUSER, :idObjet, :typeObjet, :niveau)";
     $rqtautorisation = $pdo->prepare($sqlautorisation);

@@ -11,10 +11,8 @@ require_once "../model/userModel.php";
 if (!isset($_GET["id"]) | getArbreByID($_GET["id"]) === null | getArbreByID($_GET["id"]) === false) {
     header("Location: accueil.php?message=aucunArbre");
 } else {
-    $arbre = getArbreByID($_GET["id"]);
+    $datas = getAllDatas($_GET["id"]);
 }
-
-$datas = getAllDatas(1);
 
 //Partie "head" du document HTML
 require_once "../util/header.php";

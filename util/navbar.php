@@ -23,7 +23,7 @@
                 <div class="dropdown-menu navbar_dropdown" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="newFiche.php">Créer une nouvelle fiche</a>
                     <a class="dropdown-item" href="newArbre.php">Créer un nouvel arbre généalogique</a>
-                    <a class="dropdown-item" href="autorisation.php">Gérer les autorisations</a>
+                    <a class="dropdown-item" href="droits.php">Gérer les autorisations</a>
                 </div>
             </li>
             <li class="nav-item align-content-right">

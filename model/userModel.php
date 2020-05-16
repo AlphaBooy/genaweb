@@ -6,7 +6,8 @@
  * @param $pdo PDO Objet de connexion à la base de données
  * @return string Adresse email de l'utilisateur (stocké en base et pas en session)
  */
-function getUserByID($id, $pdo) {
+function getUserByID($id, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
     $sql = "SELECT * FROM user WHERE ID = :ID";
     $rqt = $pdo->prepare($sql);
     $rqt->execute([$id]);
