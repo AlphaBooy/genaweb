@@ -63,11 +63,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h2 class="text-white mb-2 bg-primary rounded-pill h5 text-center">Professions</h2>
                         <div class="row">
-                            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <input class="form-control w-100" type="text" name="metier" id="metier" placeholder="Profession" tabindex="6">
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <a href="#" class="btn btn-outline-primary btn-block h-100 pt-2" id="plusProfession"><span class="fa fa-lg fa-plus"></span> Ajouter profession</a>
                             </div>
                         </div>
                     </div>

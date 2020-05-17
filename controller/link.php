@@ -22,6 +22,9 @@ if (isset($_GET['sosa']) && isset($_GET['arbre'])) {
     require_once "../view/fichesView.php";
 }
 if (isset($_GET['sosa']) && isset($_GET['arbre']) && isset($_GET['fiche'])) {
+    if (isFicheOnArbre($_GET['fiche'], $_GET['arbre'])) {
+        ?><script> location.replace("accueil.php?id=" + <?=$_GET['arbre'];?>); </script><?php
+    }
     if (linkFicheToArbre(getPersonneFromFiche($_GET['fiche'])['idPersonne'], $_GET['arbre'], $_GET['sosa'])) {
         //header("Location: arbre.php?id=" . $_GET['arbre']);
         ?><script> location.replace("arbre.php?id=" + <?=$_GET['arbre'];?>); </script><?php

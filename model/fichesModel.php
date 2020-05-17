@@ -146,6 +146,28 @@ function linkFicheToArbre($idPersonne, $idArbre, $idSosa, $pdo = null) {
     return $rqt->execute([$idPersonne, $idArbre, $idSosa]);
 }
 
+/**
+ * Détermine si une fiche est associée à un arbre donné
+ * @param $idFiche int Identifiant de la fiche dont on veut connaitre l'appartenance à un arbre
+ * @param $idArbre int Identifiant de l'arbre
+ * @param $pdo PDO Objet de connexion de BD
+ * @return bool true ssi une fiche donnée appartient à l'arbre saisi
+ */
+function isFicheOnArbre($idFiche, $idArbre, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $sql = "SELECT * FROM SOSA S JOIN fiche F ON S.IDPERSONNE = F.idPersonne WHERE F.ID = :ID AND S.IDARBRE = :IDARBRE";
+    $rqt = $pdo->prepare($sql);
+    $rqt->execute([$idFiche, $idArbre]);
+    return $rqt->fetch() ? true : false;
+}
+
+/**
+ * Met à jour la date et le dernière utilisateur qui a modifier une fiche
+ * @param $idFiche int Identifiant de la fiche qu'on veut mettre à jour
+ * @param $user string Utilisateur de la dernière modification
+ * @param $pdo PDO objet de connexion à la BD
+ * @return bool true ssi la fiche à bien été mise à jour
+ */
 function updateFiche($idFiche, $user, $pdo = null) {
     $pdo = isset($pdo) ? $pdo : getPDO();
     $sql = "UPDATE fiche SET dateDerniereModif = NULL, userDerniereModif = :user WHERE ID = :ID";
