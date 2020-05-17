@@ -9,7 +9,7 @@
  */
 
 function getAllFichesByUser($idUser, $pdo) {
-    $sql = "SELECT * FROM fichesAutorisations WHERE idUser = :idUser";
+    $sql = "SELECT * FROM fichesAutorisations WHERE idUser = :idUser GROUP BY ID";
     $rqt = $pdo->prepare($sql);
     $rqt->execute([$idUser]);
     $result = $rqt->fetchAll(PDO::FETCH_ASSOC);
@@ -31,11 +31,11 @@ function newFiche($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $profess
 }
 
 function modifFiche($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $profession,
-                  $ligne, $cp, $ville, $datenaiss, $lieunaiss, $datedeces, $lieudeces, $idFiche, $idPersonne, $pdo = null) {
+                  $ligne, $cp, $ville, $lieunaiss, $datenaiss, $lieudeces, $datedeces, $idFiche, $idPersonne, $pdo = null) {
     $pdo = isset($pdo) ? $pdo : getPDO();
     $sql = "UPDATE personne SET prenom = :prenom, nom = :nom, nomnaiss = :nomnaiss, prenom2 = :prenom2, prenom3 = :prenom3,
-                        sexe = :sexe, profession = :profession, ligne = :ligne, cp = :cp, ville = :ville, datenaiss = :datenaiss,
-                        lieunaiss = :lieunaiss, lieudeces = :lieudeces, datedeces = :datedeces WHERE ID = :ID";
+                        sexe = :sexe, metier = :metier, ligne = :ligne, cp = :cp, ville = :ville, lieunaiss = :lieunaiss,
+                        datenaiss = :datenaiss, lieudeces = :lieudeces, datedeces = :datedeces WHERE ID = :ID";
     $rqt = $pdo->prepare($sql);
     if ($rqt->execute([$prenom1, $nom, $nomnaiss, $prenom2, $prenom3, $sexe, $profession, $ligne, $cp, $ville, $lieunaiss, $datenaiss, $lieudeces, $datedeces, $idPersonne])) {
         return updateFiche($idFiche, getIDFromMail($_SESSION["mail"]));
@@ -150,5 +150,5 @@ function updateFiche($idFiche, $user, $pdo = null) {
     $pdo = isset($pdo) ? $pdo : getPDO();
     $sql = "UPDATE fiche SET dateDerniereModif = NULL, userDerniereModif = :user WHERE ID = :ID";
     $rqt = $pdo->prepare($sql);
-    return $rqt->execute([$user, $idFiche]);
+    return $rqt->execute([$user['ID'], $idFiche]);
 }

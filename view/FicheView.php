@@ -1,4 +1,5 @@
 <form class="form-horizontal" method="get">
+    <input type="hidden" name="id" value=<?=$_GET["id"];?>>
     <div class="container">
         <fieldset>
             <div class="row">

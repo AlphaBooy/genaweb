@@ -56,7 +56,7 @@ if (isset($_GET['prenom']) & isset($_GET['nom']) & isset($_GET['nomnaiss']) & is
     if ($_GET['prenom3'] === '') $_GET['prenom3'] = NULL;
     if ($_GET['datedeces'] === '') $_GET['datedeces'] = NULL;
     if ($_GET['lieudeces'] === '') $_GET['lieudeces'] = NULL;
-    $fiche = modifFiche($_GET['prenom'], $_GET['prenom2'], $_GET['prenom3'], $_GET['nom'], $_GET['nomnaiss'], $_GET['sexe'], $_GET['metier'], $_GET['rue'], $_GET['cp'], $_GET['ville'], $_GET['lieunaiss'], $_GET['datenaiss'], $_GET['lieudeces'], $_GET['datedeces'], $datas["ID"], $datas["IDPERSONNE"], getPDO());
+    $fiche = modifFiche($_GET['prenom'], $_GET['prenom2'], $_GET['prenom3'], $_GET['nom'], $_GET['nomnaiss'], $_GET['sexe'], $_GET['metier'], $_GET['rue'], $_GET['cp'], $_GET['ville'], $_GET['lieunaiss'], $_GET['datenaiss'], $_GET['lieudeces'], $_GET['datedeces'], $datas["ID"], $datas["idPersonne"]);
     header("Location: fiches.php?id=" . $fiche);
 }
 
