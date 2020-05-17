@@ -1,28 +1,39 @@
-<div id="SVGContainer">
+<div id="arbre">
     <?php
-    foreach ($datas as $data) {
-        echo '<svg width="500" height="350" preserveAspectRatio="xMaxYMax meet">';
-            // Ajout de l'image représentant le sexe de la personne
-            // On analyse la lettre stockée en BD représentant le sexe de l'individu (h ou f)
-            if ($data["sexe"] === 'h') {  // Si le sexe stocké est 'h' => c'est un homme
-                // On défini la ViewBox de l'image en fonction du sexe (pour afficher le sprite)
-                $vb = "50 0 100 50";
-                // On charge l'image du visage au format PNG (pour gérer la transparence)
-                echo '<image width="400" height="300" x="50" y="20" xlink:href="../public/medias/images/defaultImageHomme.png"/>';
-                // On affiche la ViewBox au format défini précedement puis on charge l'image réprésentant le sexe de l'individu sur le sprite
-                echo '<svg viewBox="' . $vb . '" width="100px" height="50px" x="225" y="215"><image xlink:href="../public/medias/images/genders.png" width="100px" height="50px"/></svg>';
-            } else {  // Sinon c'est une femme :
-                // On défini les dimensions du sprite
-                $vb = "0 0 50 50";
-                // On charge la photo par défaut pour les femmes (au format PNG)
-                echo '<image width="400" height="300" x="50" y="20" xlink:href="../public/medias/images/defaultImageFemme.png"/>';
-                // On charge l'image représentant le sexe de l'individu aux dimensions du sprite données
-                echo '<svg viewBox="' . $vb . '" width="50px" height="50px" x="225" y="215"><image xlink:href="../public/medias/images/genders.png" width="100px" height="50px"/></svg>';
-            }
-            // On intègre le cadre (cercle stylisé) des photos
-            echo '<image width="500" height="350" xlink:href="../public/medias/images/baseArbre.png" />';
-            // On ajoute le nom et prénom au format P. Nom (tronqué à 14 charactères pour éviter les problèmes de rendu)
-            echo '<text x="50%" y="297" font-size="20" text-anchor="middle" alignment-baseline="central">' . substr($data["prenom"],0, 1) . ". " . substr($data["nom"],0, 14) . '</text>';
+    $compteur = 1;
+    // On affiche une ligne de plus que le membre le plus haut de notre arbre
+    $nbAffichage = 1;
+    while ($nbAffichage < intval(getMaxSosa($_GET['id'])['MAX(IDSOSA)']) * 2 + 1) {
+        $nbAffichage = $nbAffichage * 2 + 1;
+    }
+    // Pourcentage de la taille d'affichage du premier élement
+    $w = 1;
+    $wt = $nbAffichage > 7 ? $nbAffichage > 15 ? $nbAffichage > 31 ? 4 : 3 : 2 : 1;
+    echo '<svg width=' . 100 * $wt . '% height="175">'; // Une ligne
+    echo '<g transform="scale(' . 1 / $wt . ')">';
+    $x = 50;
+    while ($compteur <= $nbAffichage) {
+        if (newNiveau($compteur) && $compteur != 1) {
+            echo '</g>';
+            echo '</svg>'; // Fin de ligne
+            $w = $w * 2;
+            echo '<svg width=' . 100 * $wt . '% height="175">'; // Une nouvelle ligne
+            echo '<g transform="scale(' . 1 / $wt . ')">';
+            $x = (100 / $w) / 2;
+        } else if (!newNiveau($compteur)) {
+            $x += (100 / $w);
+        }
+        echo '<svg width=' . 100 / $w . '% x="' . $x . '%">';
+        if (ficheExistAtSOSA($compteur, $_GET['id'])) {
+            $data = $datas[$compteur];
+            require "../util/drawFiche.php";
+        } else {
+            require "../util/drawFicheInconnu.php";
+        }
         echo '</svg>';
-    }?>
+        ?>
+    </div>
+        <?php
+        $compteur ++;
+    } ?>
 </div>

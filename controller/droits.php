@@ -38,8 +38,6 @@ if (isset($_GET['type']) && isset($_GET['id_objet']) && isset($_GET['niveau']) &
     }
 }
 
-var_dump($err);
-
 //Partie "head" du document HTML
 require_once "../util/header.php";
 
