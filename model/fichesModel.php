@@ -103,3 +103,32 @@ function addAutorisations($idUser, $idFiche, $pdo) {
     $rqtautorisation = $pdo->prepare($sqlautorisation);
     return $rqtautorisation->execute([$idUser['ID'],$idFiche['ID'],"fiche","super-administrateur"]);
 }
+
+/**
+ * Récupère toutes les données de la personne avec sa fiche
+ * @param $idFiche int Identifiant de la fiche dont on veut les données
+ * @param $pdo PDO Objet de connexion à la BD
+ * @return array Ensemble des valeurs de la fiche et de la personne liées
+ */
+function getPersonneFromFiche($idFiche, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $sql = "SELECT * FROM PERSONNE P JOIN FICHE F ON P.ID = F.IDPERSONNE WHERE F.ID = :ID";
+    $rqt = $pdo->prepare($sql);
+    $rqt->execute([$idFiche]);
+    return $rqt->fetch();
+}
+
+/**
+ * Associe une personne à un emplacement d'un arbre donné
+ * @param $idPersonne int Identifiant de la personne à insérer dans l'arbre
+ * @param $idArbre int Identifiant de l'arbre dans lequel on veut insérer la personne
+ * @param $idSosa int Identifiant unique d'un arbre représentant l'emplacement d'une personne
+ * @param $pdo PDO Objet de connexion à la BD
+ * @return bool true ssi l'insertion s'est bien déroullée
+ */
+function linkFicheToArbre($idPersonne, $idArbre, $idSosa, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $sql = "INSERT INTO SOSA VALUES(:IDPERSONNE,:IDARBRE,:IDSOSA)";
+    $rqt = $pdo->prepare($sql);
+    return $rqt->execute([$idPersonne, $idArbre, $idSosa]);
+}

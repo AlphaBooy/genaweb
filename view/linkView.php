@@ -13,11 +13,7 @@
         </thead>
         <?php
         foreach ($allfiches as $fiche) {
-            if (isset($_GET['sosa']) && isset($_GET['arbre'])) {
-                echo '<tr class="trclicable" onclick="window.location.assign(window.location.href.toString() + \'&fiche=' . $fiche['ID'] . '\')">';
-            } else {
-                echo '<tr class="trclicable" onclick="window.location.assign(\'fiche.php?id=' . $fiche['ID'] . '\')">';
-            }
+            echo '<tr>';
             echo '<td class="text-center">' . $fiche['ID'] . '</td>';
             echo '<td class="text-center">' . $fiche['idPersonne'] . '</td>';
             echo '<td class="text-center">' . getUserByID($fiche['userCrea'], getPDO())["mail"] . '</td>';

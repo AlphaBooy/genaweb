@@ -23,6 +23,7 @@
         } else if (!newNiveau($compteur)) {
             $x += (100 / $w);
         }
+        echo '<a href="link.php?sosa=' . $compteur . '&arbre=' . $_GET["id"] . '">';
         echo '<svg width=' . 100 / $w . '% x="' . $x . '%">';
         if (ficheExistAtSOSA($compteur, $_GET['id'])) {
             $data = $datas[$compteur];
@@ -31,6 +32,7 @@
             require "../util/drawFicheInconnu.php";
         }
         echo '</svg>';
+        echo '</a>';
         ?>
     </div>
         <?php
