@@ -30,6 +30,19 @@ function newFiche($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $profess
     }
 }
 
+function modifFiche($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $profession,
+                  $ligne, $cp, $ville, $datenaiss, $lieunaiss, $datedeces, $lieudeces, $idFiche, $idPersonne, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $sql = "UPDATE personne SET prenom = :prenom, nom = :nom, nomnaiss = :nomnaiss, prenom2 = :prenom2, prenom3 = :prenom3,
+                        sexe = :sexe, profession = :profession, ligne = :ligne, cp = :cp, ville = :ville, datenaiss = :datenaiss,
+                        lieunaiss = :lieunaiss, lieudeces = :lieudeces, datedeces = :datedeces WHERE ID = :ID";
+    $rqt = $pdo->prepare($sql);
+    if ($rqt->execute([$prenom1, $nom, $nomnaiss, $prenom2, $prenom3, $sexe, $profession, $ligne, $cp, $ville, $lieunaiss, $datenaiss, $lieudeces, $datedeces, $idPersonne])) {
+        return updateFiche($idFiche, getIDFromMail($_SESSION["mail"]));
+    }
+    return false;
+}
+
 /**
  * Créer une fiche associée à une personne et à un créateur.
  * La date par défaut et la date courante. On se sert donc de cette propriété pour
@@ -76,12 +89,12 @@ function insertNewFiche($idPersonne, $idCreateur, $pdo) {
  * @return int l'id de la fiche créée
  */
 
-function insertNewPersonne($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $professions,
+function insertNewPersonne($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $profession,
     $ligne, $cp, $ville, $datenaiss, $lieunaiss, $datedeces, $lieudeces, $pdo) {
     $sql = "INSERT INTO personne VALUES (:ID, :prenom, :nom, :nomnaiss, :prenom2, :prenom3,
-                                :sexe, :datenaiss, :lieunaiss, :lieudeces, :datedeces)";
+                                :sexe, :profession, :ligne, :cp, :ville, :datenaiss, :lieunaiss, :lieudeces, :datedeces)";
     $rqt = $pdo->prepare($sql);
-    if ($rqt->execute([NULL,$prenom1, $nom, $nomnaiss, $prenom2, $prenom3, $sexe, $lieunaiss, $datenaiss, $lieudeces, $datedeces])) {
+    if ($rqt->execute([NULL,$prenom1, $nom, $nomnaiss, $prenom2, $prenom3, $sexe, $profession, $ligne, $cp, $ville, $lieunaiss, $datenaiss, $lieudeces, $datedeces])) {
         $sqlResult = "SELECT ID FROM personne ORDER BY ID DESC LIMIT 1";
         $rqtResult = $pdo->prepare($sqlResult);
         $rqtResult->execute([]);
@@ -131,4 +144,11 @@ function linkFicheToArbre($idPersonne, $idArbre, $idSosa, $pdo = null) {
     $sql = "INSERT INTO SOSA VALUES(:IDPERSONNE,:IDARBRE,:IDSOSA)";
     $rqt = $pdo->prepare($sql);
     return $rqt->execute([$idPersonne, $idArbre, $idSosa]);
+}
+
+function updateFiche($idFiche, $user, $pdo = null) {
+    $pdo = isset($pdo) ? $pdo : getPDO();
+    $sql = "UPDATE fiche SET dateDerniereModif = NULL, userDerniereModif = :user WHERE ID = :ID";
+    $rqt = $pdo->prepare($sql);
+    return $rqt->execute([$user, $idFiche]);
 }
