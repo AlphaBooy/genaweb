@@ -7,6 +7,8 @@
     <title>GenaWEB</title>
     <!-- Imports JQuery 3.4.1 -->
     <script rel="script" type="text/javascript" src="../public/jquery/jquery3.4.1.js"></script>
+    <!-- Imports jsPDF -->
+    <script rel="script" type="text/javascript" src="../public/jsPDF/dist/jspdf.min.js"></script>
     <!-- Imports bootstrap 4.0.0 (CSS + JS) -->
     <link rel="stylesheet" type="text/css" href="../public/bootstrap/css/bootstrap.min.css"/>
     <script rel="script" type="text/javascript" src="../public/bootstrap/js/bootstrap.bundle.min.js"></script>

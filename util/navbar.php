@@ -1,4 +1,4 @@
-<div class="navbar navbar-dark navbar-expand bg-dark" id="myNavbar">
+<div class="navbar navbar-dark navbar-expand bg-dark" id="myNavbar" xmlns="http://www.w3.org/1999/html">
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,8 +21,8 @@
                 <a href="#" class="nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"><span class="fa fa-plus-circle" </a>
                 <div class="dropdown-menu navbar_dropdown" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="newFiche.php">Créer une nouvelle fiche</a>
-                    <a class="dropdown-item" href="newArbre.php">Créer un nouvel arbre généalogique</a>
+                    <a class="dropdown-item" href="newFiche.php">Créer une nouvelle </br> fiche</a>
+                    <a class="dropdown-item" href="newArbre.php">Créer un nouvel arbre </br> généalogique</a>
                     <a class="dropdown-item" href="droits.php">Gérer les autorisations</a>
                 </div>
             </li>

@@ -24,11 +24,12 @@
             <p> La représentation graphique des individus et de leurs liens de parenté se présente communément sous la
                 forme d'un <mark class="mark2"> schéma arborescent</mark> à partir d'un individu racine ancré en bas de page et les individus
                 parents dans les « branches » et « feuilles », c'est pourquoi un tel schéma est communément appelé
-                arbre généalogique. Cette mise en page est surtout adaptée pour visualiser une généalogie ascendante.</p>
+                arbre généalogique.</p>
         </div>
         <div class="col-1">
 
         </div>
+
         <div class="col-6" id="divAccueil2_1">
             <img id="divAccueil2_1_img" alt="Femme caucasienne utilisant son ordinateur" src="../public/medias/images/femme_stock.jpg">
         </div>

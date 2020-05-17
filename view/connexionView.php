@@ -9,7 +9,7 @@
             <input type="password" name="pass" id="pass" class="form-control w-100 col-12 my-2 rounded-pill" placeholder="Mot de passe " tabindex="2" required/>
             <p><small class="text-muted col-12"><a href="inscription.php">Pas encore de compte ?</a></small></p>
             <p><small class="text-muted"><a href="#" class="text-right">Mot de passe oublié ?</a></small></p>
-            <input type="submit" class="btn btn-outline-primary btn-block mt-3" value="S'inscrire">
+            <input type="submit" class="btn btn-outline-primary btn-block mt-3" value="Se connecter">
         </form>
     </div>
 </div>
