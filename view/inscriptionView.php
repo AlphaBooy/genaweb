@@ -4,7 +4,7 @@
             <h1 class="h4 text-center text-dark">S'inscrire</h1>
         </div>
         <div class="col-3"></div>
-        <form class="form-group input-group col-6">
+        <form class="form-group input-group col-6" method="post" target="_self">
             <input type="text" name="mail" id="mail" class="form-control w-100 col-12 my-2 rounded-pill" placeholder="Adresse mail" tabindex="1" required />
             <small id="passwordHelpBlock" class="form-text text-muted">
                 <span class="fa fa-question-circle"></span> Doit être une adresse mail valide et qui ne soit liée à aucun compte déjà existant.
