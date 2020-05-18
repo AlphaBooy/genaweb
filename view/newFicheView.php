@@ -264,10 +264,20 @@
                         <h2 class="text-white mb-2 bg-primary rounded-pill h5 text-center">Décès</h2>
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                                <input class="form-control w-100" type="text" name="datedeces" id="datedeces" placeholder="Date" <?php if($_GET['datedeces']!=''){ echo "value=\"".$_GET['datedeces']."\"";}?> tabindex="12">
+                                <?php if (isset($err["datedeces"])) { ?>
+                                    <input class="form-control w-100 is-invalid" type="text" name="datedeces" id="datedeces" placeholder="Date" value=<?php echo "\"".$_GET['datedeces']."\""?> tabindex="12">
+                                    <div class="invalid-feedback"><?= $err["datedeces"];?></div>
+                                <?php } else { ?>
+                                    <input class="form-control w-100" type="text" name="datedeces" id="datedeces" placeholder="Date" <?php if($_GET['datedeces']!=''){ echo "value=\"".$_GET['datedeces']."\"";}?> required tabindex="12">
+                                <?php } ?>
                             </div>
                             <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                                <input class="form-control w-100" type="text" name="lieudeces" id="lieudeces" placeholder="Lieu" <?php if($_GET['lieudeces']!=''){ echo "value=\"".$_GET['lieudeces']."\"";}?> tabindex="13">
+                                <?php if (isset($err["lieudeces"])) { ?>
+                                    <input class="form-control w-100 is-invalid" type="text" name="lieudeces" id="lieudeces" placeholder="Lieu" value=<?php echo "\"".$_GET['lieudeces']."\""?> required tabindex="13">
+                                    <div class="invalid-feedback"><?= $err["lieudeces"];?></div>
+                                <?php } else { ?>
+                                    <input class="form-control w-100" type="text" name="lieudeces" id="lieudeces" placeholder="Lieu" <?php if($_GET['lieudeces']!=''){ echo "value=\"".$_GET['lieudeces']."\"";}?> tabindex="13">
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

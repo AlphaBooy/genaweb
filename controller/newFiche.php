@@ -34,7 +34,6 @@ if (isset($_GET['prenom']) & isset($_GET['nom']) & isset($_GET['nomnaiss']) & is
         if (strlen(date_format(date_create_from_format('d/m/Y', $_GET['datenaiss']), 'Y-m-d')) !== 10) {
             $err["datenaiss"] = "Format incorrect, veuillez renseigner une date sous forme : JJ/MM/AAAA !";
         }
-        $_GET["datenaiss"] = date_create_from_format('d/m/Y',$_GET['datenaiss'])->format('Y-m-d');
     }else {
          $err["datenaiss"] = "Format incorrect, veuillez renseigner une date sous forme : JJ/MM/AAAA !";
     }
@@ -44,11 +43,12 @@ if (isset($_GET['prenom']) & isset($_GET['nom']) & isset($_GET['nomnaiss']) & is
             $err["lieudeces"] = "Format incorrect, le lieu de decès doit avoir une taille valide (limitée à 25 charactères) !";
         }
     }
-    if (isset($_GET['datedeces']) && $_GET['datedeces'] !== '') {
+    if (date_create_from_format('d/m/Y',$_GET['datedeces']) !== false) {
         if (strlen(date_format(date_create_from_format('d/m/Y',$_GET['datedeces']),'Y-m-d')) !== 10) {
             $err["datedeces"] = "Format incorrect, veuillez renseigner une date sous forme : JJ/MM/AAAA !";
         }
-        $_GET["datedeces"] = date_create_from_format('d/m/Y',$_GET['datedeces'])->format('Y-m-d');
+    }else {
+         $err["datedeces"] = "Format incorrect, veuillez renseigner une date sous forme : JJ/MM/AAAA !";
     }
     // Initialisation à null des valeurs qui ne sont pas initialisées
     if ($_GET['prenom2'] === '') $_GET['prenom2'] = NULL;
@@ -58,6 +58,8 @@ if (isset($_GET['prenom']) & isset($_GET['nom']) & isset($_GET['nomnaiss']) & is
     if ($_GET['cp'] === '') $_GET['cp'] = NULL;
 
     if ($err === []){
+        $_GET["datenaiss"] = date_create_from_format('d/m/Y',$_GET['datenaiss'])->format('Y-m-d');
+        $_GET["datedeces"] = date_create_from_format('d/m/Y',$_GET['datedeces'])->format('Y-m-d');
         $fiche = newFiche($_GET['prenom'], $_GET['prenom2'], $_GET['prenom3'], $_GET['nom'], $_GET['nomnaiss'], $_GET['sexe'], $_GET['metier'], $_GET['rue'], $_GET['cp'], $_GET['ville'], $_GET['lieunaiss'], $_GET['datenaiss'], $_GET['lieudeces'], $_GET['datedeces'], getPDO());
         header("Location: fiches.php?id=" . $fiche);
     }
