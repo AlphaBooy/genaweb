@@ -34,8 +34,8 @@
         echo '</svg>';
         echo '</a>';
         ?>
-    </div>
-        <?php
-        $compteur ++;
-    } ?>
+
 </div>
+
+<?php
+$compteur ++;} ?>

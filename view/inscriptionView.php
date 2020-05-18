@@ -9,11 +9,30 @@
             <small id="passwordHelpBlock" class="form-text text-muted">
                 <span class="fa fa-question-circle"></span> Doit être une adresse mail valide et qui ne soit liée à aucun compte déjà existant.
             </small>
-            <input type="text" name="pass" id="pass" class="form-control w-100 col-12 my-2 rounded-pill" placeholder="Mot de passe " tabindex="2" required/>
-            <small id="passwordHelpBlock" class="form-text text-muted">
-                <span class="fa fa-question-circle"></span> Doit contenir 1 majuscule, 1 minuscule et 2 chiffres minimums.
-            </small>
-            <input type="submit" class="btn btn-outline-primary btn-block mt-3" value="S'inscrire">
+
+            <input type="password" name="pass" id="pass" class="form-control w-100 col-12 my-2 rounded-pill" placeholder="Mot de passe " tabindex="2" required/>
+
+            <button type="button" id="show_password" name="show_password" class="col-4 btn btn-outline-primary btn-block mt-1">Voir mot de passe</button>
+            <br />
+            <input type="submit" class="btn btn-outline-primary btn-block mt-2" value="S'inscrire">
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('#show_password').on('click', function(){
+            var passwordField = $('#pass');
+            var passwordFieldType = passwordField.attr('type');
+            if(passwordFieldType == 'password')
+            {
+                passwordField.attr('type', 'text');
+                $(this).text('Cacher mot de passe');
+            }
+            else
+            {
+                passwordField.attr('type', 'password');
+                $(this).text('Voir mot de passe');
+            }
+        });
+    });
+</script>
