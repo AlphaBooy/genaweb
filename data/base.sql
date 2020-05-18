@@ -16,6 +16,7 @@ CREATE TABLE `genaweb`.`PERSONNE` (
     `lieunaiss` VARCHAR(25) CHARACTER SET utf8 NOT NULL,
     `datedeces` DATE,
     `lieudeces` VARCHAR(25) CHARACTER SET utf8,
+    `photo` VARCHAR(50) CHARACTER SET utf8 DEFAULT NULL,
     PRIMARY KEY (`ID`)
 ) ENGINE = InnoDB;
 

@@ -92,9 +92,9 @@ function insertNewFiche($idPersonne, $idCreateur, $pdo) {
 function insertNewPersonne($prenom1, $prenom2, $prenom3, $nom, $nomnaiss, $sexe, $profession,
     $ligne, $cp, $ville, $datenaiss, $lieunaiss, $datedeces, $lieudeces, $pdo) {
     $sql = "INSERT INTO personne VALUES (:ID, :prenom, :nom, :nomnaiss, :prenom2, :prenom3,
-                                :sexe, :profession, :ligne, :cp, :ville, :datenaiss, :lieunaiss, :lieudeces, :datedeces)";
+                                :sexe, :profession, :ligne, :cp, :ville, :datenaiss, :lieunaiss, :lieudeces, :datedeces, :photo)";
     $rqt = $pdo->prepare($sql);
-    if ($rqt->execute([NULL,$prenom1, $nom, $nomnaiss, $prenom2, $prenom3, $sexe, $profession, $ligne, $cp, $ville, $lieunaiss, $datenaiss, $lieudeces, $datedeces])) {
+    if ($rqt->execute([NULL,$prenom1, $nom, $nomnaiss, $prenom2, $prenom3, $sexe, $profession, $ligne, $cp, $ville, $lieunaiss, $datenaiss, $lieudeces, $datedeces, NULL])) {
         $sqlResult = "SELECT ID FROM personne ORDER BY ID DESC LIMIT 1";
         $rqtResult = $pdo->prepare($sqlResult);
         $rqtResult->execute([]);
@@ -173,4 +173,16 @@ function updateFiche($idFiche, $user, $pdo = null) {
     $sql = "UPDATE fiche SET dateDerniereModif = NULL, userDerniereModif = :user WHERE ID = :ID";
     $rqt = $pdo->prepare($sql);
     return $rqt->execute([$user['ID'], $idFiche]);
+}
+
+function UpdatePhoto($chemin, $id) {
+    $pdo = getPDO();
+    try {
+        $sql = "UPDATE personne SET photo = :photo WHERE id = :id";
+        $requete = $pdo->prepare($sql);
+        return $requete->execute(array($chemin,$id));
+    } catch (PDOException $e) {
+        $e->getMessage();
+        return false;
+    }
 }

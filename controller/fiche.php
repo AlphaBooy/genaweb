@@ -60,6 +60,8 @@ if (isset($_GET['prenom']) & isset($_GET['nom']) & isset($_GET['nomnaiss']) & is
     header("Location: fiches.php?id=" . $fiche);
 }
 
+require_once '../util/importPhoto.php';
+
 //Partie "navbar" (ou barre de navigation) du document HTML
 require_once "../util/navbar.php";
 

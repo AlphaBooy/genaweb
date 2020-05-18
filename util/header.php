@@ -12,6 +12,8 @@
     <!-- Imports bootstrap 4.0.0 (CSS + JS) -->
     <link rel="stylesheet" type="text/css" href="../public/bootstrap/css/bootstrap.min.css"/>
     <script rel="script" type="text/javascript" src="../public/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Import preview images -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <!-- Import de startup-kit UI, une surcouche CSS basée sur bootstrap -->
     <link rel="stylesheet" type="text/css" href="../public/startupkit/css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../public/genaweb/css/mainStyle.css"/>

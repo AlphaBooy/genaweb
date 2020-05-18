@@ -129,3 +129,39 @@
         <button type="submit" class="btn btn-block btn-primary">Modifier la fiche</button>
     </div>
 </form>
+<form class="form-horizontal" method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="row my-5">
+            <div class="form-inline input-group">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 class="text-white mb-2 bg-primary rounded-pill h5 text-center">Documents</h2>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                            <h3 class="h5 text-primary text-center">Photo d'identité</h3>
+                            <div class="custom-file" id="customFile" lang="es">
+                                <input type="file" class="custom-file-input" id="image" name="image">
+                                <label class="custom-file-label" for="exampleInputFile">
+                                    Choisissez un fichier...
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <?php if (isset($datas['photo']) && $datas['photo'] !== '') { ?>
+                                <!-- Une photo de cette personne existe en BD -->
+                                <img class="img-thumbnail" src=<?=$datas['photo'];?> >
+                            <?php } else { ?>
+                                <!-- Aucune photo de cette personne n'existe en BD -->
+                                <img class="img-thumbnail" src="../public/medias/images/nr.jpg">
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <input type="submit" class="form-control btn btn-block btn-primary mt-1" value="Changer la photo de profil"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
